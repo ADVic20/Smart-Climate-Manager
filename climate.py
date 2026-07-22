@@ -1,3 +1,8 @@
+from .controller import ClimateController
+from .validator import SensorValidator
+from .confirmation import ConfirmationManager
+from .climate_service import ClimateService
+
 class SmartClimateManager(ClimateEntity):
 
     ...
