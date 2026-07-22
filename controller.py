@@ -2,21 +2,24 @@ from __future__ import annotations
 
 from homeassistant.core import HomeAssistant
 
-from .climate_service import ClimateService
-from .confirmation import ConfirmationManager
-from .validator import SensorValidator
-
 
 class ClimateController:
 
-    def __init__(self, hass: HomeAssistant, climate):
+    def __init__(
+        self,
+        hass: HomeAssistant,
+        climate,
+        validator,
+        confirmation,
+        service,
+    ):
 
         self.hass = hass
         self.climate = climate
 
-        self.validator = SensorValidator(hass)
-        self.confirmation = ConfirmationManager(hass)
-        self.service = ClimateService(hass)
+        self.validator = validator
+        self.confirmation = confirmation
+        self.service = service
 
     async def turn_on(self):
 
@@ -61,11 +64,6 @@ class ClimateController:
         self,
         temperature,
     ):
-
-        #
-        # Aquí después validaremos
-        # si el clima está apagado
-        #
 
         await self.service.set_temperature(
             self.climate.real_climate,
