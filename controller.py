@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from homeassistant.core import HomeAssistant
-
+from .climate_service import ClimateService
 
 class ClimateController:
 
