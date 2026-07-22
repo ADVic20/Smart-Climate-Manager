@@ -15,7 +15,6 @@ class ClimateService:
         self.hass = hass
 
     async def turn_on(self, entity_id):
-
         await self.hass.services.async_call(
             DOMAIN,
             SERVICE_TURN_ON,
@@ -26,7 +25,6 @@ class ClimateService:
         )
 
     async def turn_off(self, entity_id):
-
         await self.hass.services.async_call(
             DOMAIN,
             SERVICE_TURN_OFF,
@@ -41,7 +39,6 @@ class ClimateService:
         entity_id,
         temperature,
     ):
-
         await self.hass.services.async_call(
             DOMAIN,
             SERVICE_SET_TEMPERATURE,
@@ -57,7 +54,6 @@ class ClimateService:
         entity_id,
         hvac_mode,
     ):
-
         await self.hass.services.async_call(
             DOMAIN,
             SERVICE_SET_HVAC_MODE,
