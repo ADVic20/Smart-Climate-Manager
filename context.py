@@ -1,3 +1,5 @@
+"""Climate context models for Smart Climate Manager."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -5,6 +7,7 @@ from dataclasses import dataclass, field
 
 @dataclass(slots=True)
 class ClimateConfig:
+    """Static configuration of a managed climate."""
 
     unique_id: str
 
@@ -14,13 +17,16 @@ class ClimateConfig:
 
     real_climate: str
 
-    allow_force: bool
+    allow_force: bool = False
 
-    sensors: list[str] = field(default_factory=list)
+    sensors: list[str] = field(
+        default_factory=list
+    )
 
 
 @dataclass(slots=True)
 class ClimateState:
+    """Dynamic state of the climate."""
 
     available: bool = False
 
@@ -34,24 +40,22 @@ class ClimateState:
 
     target_temperature: float | None = None
 
-    target_temperature_high: float | None = None
-
-    target_temperature_low: float | None = None
-
     fan_mode: str | None = None
 
     swing_mode: str | None = None
 
     preset_mode: str | None = None
 
-    humidity: int | None = None
-
-    target_humidity: int | None = None
+    current_humidity: int | None = None
 
 
 class ClimateContext:
+    """Main context shared between Smart Climate modules."""
 
-    def __init__(self, config: ClimateConfig):
+    def __init__(
+        self,
+        config: ClimateConfig,
+    ) -> None:
 
         self.config = config
 
